@@ -309,7 +309,8 @@ public class CustomTextInputLayout extends LinearLayout {
             // We don't want a monospace font just because we have a password field
             mCollapsingTextHelper.setTypefaces(mEditText.getTypeface());
         }
-        mCollapsingTextHelper.setExpandedTextSize(mEditText.getTextSize());
+        mCollapsingTextHelper.setExpandedTextSize(mEditText.getTextSize()/1.4f);
+        mCollapsingTextHelper.setCollapsedTextSize(mEditText.getTextSize()/2);
 
         final int editTextGravity = mEditText.getGravity();
         mCollapsingTextHelper.setCollapsedTextGravity(

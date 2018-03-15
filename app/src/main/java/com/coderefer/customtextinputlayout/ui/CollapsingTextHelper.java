@@ -15,6 +15,8 @@ import android.support.v4.math.MathUtils;
 import android.support.v4.text.TextDirectionHeuristicsCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewCompat;
+import android.text.Layout;
+import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.Log;
@@ -96,6 +98,7 @@ final class CollapsingTextHelper {
 
     private float mExpandedShadowRadius, mExpandedShadowDx, mExpandedShadowDy;
     private int mExpandedShadowColor;
+    private StaticLayout mTextLayout;
 
     public CollapsingTextHelper(View view) {
         mView = view;
@@ -503,7 +506,16 @@ final class CollapsingTextHelper {
                 // If we should use a texture, draw it instead of text
                 canvas.drawBitmap(mExpandedTitleTexture, x, y, mTexturePaint);
             } else {
-                canvas.drawText(mTextToDraw, 0, mTextToDraw.length(), x, y, mTextPaint);
+
+                mTextLayout = new StaticLayout(mTextToDraw, mTextPaint, canvas.getWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+
+                canvas.save();
+// calculate x and y position where your text will be placed
+
+//                canvas.translate(x, y);
+                mTextLayout.draw(canvas);
+                canvas.restore();
+//                canvas.drawText(mTextToDraw, 0, mTextToDraw.length(), x, y, mTextPaint);
             }
         }
 
@@ -597,14 +609,14 @@ final class CollapsingTextHelper {
 //            mTextPaint.setLinearText(mScale != 1f);
 
             // If we don't currently have text to draw, or the text size has changed, ellipsize...
-            final CharSequence title = TextUtils.ellipsize(mText, mTextPaint,
-                    availableWidth, TextUtils.TruncateAt.END);
-            if (!TextUtils.equals(title, mTextToDraw)) {
-                if(title.toString().endsWith("…")){
+//            final CharSequence title = TextUtils.ellipsize(mText, mTextPaint,
+//                    availableWidth, TextUtils.TruncateAt.END);
+            if (!TextUtils.equals(mText, mTextToDraw)) {
+                if(mText.toString().endsWith("…")){
                     Log.d("collapsingTExtHelper", "ellipsized");
                     isEllipsized = true;
                 }
-                mTextToDraw = title;
+                mTextToDraw = mText;
                 mIsRtl = calculateIsRtl(mTextToDraw);
             }
         }
@@ -631,7 +643,6 @@ final class CollapsingTextHelper {
 
         Canvas c = new Canvas(mExpandedTitleTexture);
         c.drawText(mTextToDraw, 0, mTextToDraw.length(), 0, h - mTextPaint.descent(), mTextPaint);
-        c.drawText("multi-line", 100, 150, mTextPaint);
 
         if (mTexturePaint == null) {
             // Make sure we have a paint
