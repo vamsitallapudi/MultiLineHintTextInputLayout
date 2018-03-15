@@ -1,4 +1,4 @@
-package com.processmap.mobilepro.ui.components.customtextinput;
+package com.coderefer.customtextinputlayout.ui;
 
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.DrawableContainer;

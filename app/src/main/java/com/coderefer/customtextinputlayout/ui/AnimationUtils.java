@@ -1,4 +1,4 @@
-package com.processmap.mobilepro.ui.components.customtextinput;
+package com.coderefer.customtextinputlayout.ui;
 
 import android.support.v4.view.animation.FastOutLinearInInterpolator;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;

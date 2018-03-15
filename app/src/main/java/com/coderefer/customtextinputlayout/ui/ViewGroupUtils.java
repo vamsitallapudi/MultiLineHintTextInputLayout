@@ -1,6 +1,4 @@
-package com.processmap.mobilepro.ui.components.customtextinput;
-
-/**
+package com.coderefer.customtextinputlayout.ui; /**
  * Created by vamsitallapudi on 3/12/18.
  */
 

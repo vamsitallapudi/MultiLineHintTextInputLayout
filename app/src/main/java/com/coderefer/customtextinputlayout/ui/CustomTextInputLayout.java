@@ -1,4 +1,4 @@
-package com.processmap.mobilepro.ui.components.customtextinput;
+package com.coderefer.customtextinputlayout.ui;
 
 
 /**
@@ -55,7 +55,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewStructure;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.EditText;
